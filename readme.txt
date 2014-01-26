@@ -15,12 +15,12 @@ This plugin will display team or staff members using short code on your post or 
 This plugin will display team or staff members using short code on your post or page. You can display team members picture,social links,vcard and other info.
 Features:
 1.  List and Grid view to display team members.
-2. Different Image Shapes.
-3. Limit number of team member to display.
-4. Control member display order.
-5. Exclude members for the list.
-6. Shortcode generator.
-7. Setting page 
+1. Different Image Shapes.
+1. Limit number of team member to display.
+1. Control member display order.
+1. Exclude members for the list.
+1. Shortcode generator.
+1. Setting page 
 
 For help contact me on [Dynamicweblab.com](http://www.dynamicweblab.com/)
 
