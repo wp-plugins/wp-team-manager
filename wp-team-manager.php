@@ -267,7 +267,7 @@ $meta_boxes[] = array(
 /********************* BEGIN EXTENDING CLASS ***********************/
 
 /**
- * Extend RW_Meta_Box class
+ * Extend WTM_Meta_Box class
  * Add field type: 'taxonomy'
  */
 class WTM_Meta_Box_Taxonomy extends WTM_Meta_Box {
