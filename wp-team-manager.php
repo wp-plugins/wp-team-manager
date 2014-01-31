@@ -4,7 +4,7 @@ Plugin Name: WordPress Team Manager
 Plugin URI: http://www.dynamicweblab.com/
 Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
 Author: maidul
-Version: 1.0
+Version: 1.1
 Author URI:http://www.dynamicweblab.com/
 License: GPL2
 */
@@ -270,7 +270,7 @@ $meta_boxes[] = array(
  * Extend RW_Meta_Box class
  * Add field type: 'taxonomy'
  */
-class RW_Meta_Box_Taxonomy extends RW_Meta_Box {
+class WTM_Meta_Box_Taxonomy extends WTM_Meta_Box {
     
     function add_missed_values() {
         parent::add_missed_values();
@@ -315,7 +315,7 @@ class RW_Meta_Box_Taxonomy extends RW_Meta_Box {
 }
 
 foreach ($meta_boxes as $meta_box) {
-    $my_box = new RW_Meta_Box_Taxonomy($meta_box);
+    $my_box = new WTM_Meta_Box_Taxonomy($meta_box);
 }
 
 /********************* END DEFINITION OF META BOXES ***********************/

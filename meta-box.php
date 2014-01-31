@@ -28,7 +28,7 @@ function rw_delete_file() {
 /**
  * Meta Box class
  */
-class RW_Meta_Box {
+class WTM_Meta_Box {
 
 	protected $_meta_box;
 	protected $_fields;
