@@ -19,6 +19,9 @@ add_option(WTM_VERSION_KEY, WTM_VERSION_NUM);
 
 define( 'PLUGIN_DIR', dirname(__FILE__).'/' );
 
+//include language
+
+load_plugin_textdomain('team_manager', false, basename( dirname( __FILE__ ) ) . '/languages' );
 
 //include Meta Box Class
 require_once PLUGIN_DIR . '/meta-box.php';
