@@ -51,3 +51,7 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.1 =
 * Fix Fatal error: Cannot redeclare class RW_Meta_Box bug
+
+= 1.2 =
+* Add email field on team member page
+* Add featured image support
