@@ -359,14 +359,6 @@ class WTM_Meta_Box {
 		}
 		echo "</td>";
 
-		// show form upload
-		//echo "<div style='clear: both'><strong>" . _('Upload new files') . "</strong></div>
-			//<div class='new-files'>
-				//<div class='file-input'><input type='file' name='{$field['id']}[]' /></div>
-				//<a class='rw-add-file' href='javascript:void(0)'>" . _('Add more file') . "</a>
-			//</div>
-		//</td>";
-		// show form upload
 				
 	}
 

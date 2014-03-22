@@ -3,8 +3,8 @@
 Plugin Name: WordPress Team Manager
 Plugin URI: http://www.dynamicweblab.com/
 Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
-Author: maidul
-Version: 1.1
+Author: Dynamicweblab
+Version: 1.2
 Author URI:http://www.dynamicweblab.com/
 License: GPL2
 */
@@ -13,7 +13,7 @@ if (!defined('WTM_VERSION_KEY'))
     define('WTM_VERSION_KEY', 'wtm_version');
 
 if (!defined('WTM_VERSION_NUM'))
-    define('WTM_VERSION_NUM', '1.0.0');
+    define('WTM_VERSION_NUM', '1.0.2');
 
 add_option(WTM_VERSION_KEY, WTM_VERSION_NUM);
 
@@ -31,6 +31,26 @@ require_once PLUGIN_DIR . '/shortcode-generator.php';
 
 //include Settings
 require_once PLUGIN_DIR . '/settings.php';
+
+// add feature image on team_manager post type
+
+if ( function_exists( 'add_theme_support' ) ) { 
+add_theme_support( 'post-thumbnails', array( 'team_manager' ) ); 
+}
+
+
+function team_manager_featured_image_alttext($translation, $text, $domain) {
+    global $post;
+    if ($post->post_type == 'team_manager') {
+            $translations = get_translations_for_domain( $domain);
+            if ( $text == 'Featured Image')
+                return $translations->translate( 'Team Memeber Picture' );
+            if ( $text == 'Set featured image')
+                return $translations->translate( 'Select an image' );         
+    }
+    return $translation;
+}
+add_filter('gettext', 'team_manager_featured_image_alttext', 10, 4);
 
 //Adding the necessary actions
 add_action('init', 'register_team_manager' );
@@ -56,7 +76,7 @@ function register_team_manager() {
     $args = array( 
         'labels' => $labels,
         'hierarchical' => false,        
-        'supports' => array( 'title', 'thumbnail', 'custom-fields','editor','page-attributes'),
+        'supports' => array( 'title', 'thumbnail','editor','page-attributes'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,       
@@ -262,6 +282,13 @@ $meta_boxes[] = array(
             'name' => 'Vimeo',                  // field name
             'desc' => 'Vimeo profile link.', // field description, optional
             'id' => $prefix . 'vlink',              // field id, i.e. the meta key
+            'type' => 'text',                       // text box
+            'std' => ''                    // default value, optional
+        ),
+        array(
+            'name' => 'Email',                  // field name
+            'desc' => 'Email Id', // field description, optional
+            'id' => $prefix . 'emailid',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         )

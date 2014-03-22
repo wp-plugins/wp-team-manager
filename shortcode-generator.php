@@ -147,6 +147,7 @@ function team_manager_submenu_page_callback() {
         $width = $image[1];
         $job_title = get_post_meta($post_id,'tm_jtitle',true);
         $telephone = get_post_meta($post_id,'tm_telephone',true);
+        $location = get_post_meta($post_id,'tm_location',true);
         $web_url = get_post_meta($post_id,'tm_web_url',true);
         $vcard = get_post_meta($post_id,'tm_vcard',true);
         $facebook = get_post_meta($post_id,'tm_flink',true);
@@ -155,7 +156,9 @@ function team_manager_submenu_page_callback() {
         $googleplus = get_post_meta($post_id,'tm_gplink',true);
         $dribbble = get_post_meta($post_id,'tm_dribbble',true);
         $youtube = get_post_meta($post_id,'tm_ylink',true);
-        $vimeo = get_post_meta($post_id,'tm_vlink',true);  
+        $vimeo = get_post_meta($post_id,'tm_vlink',true);
+        $emailid = get_post_meta($post_id,'tm_emailid',true);
+          
 
         echo '<li class="'.$layout.'">';
 
@@ -188,7 +191,10 @@ function team_manager_submenu_page_callback() {
           }
           if (!empty($vimeo)) {
             echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" title="Vimeo">Vimeo</a></li>';
-          }                                              
+          }
+          if (!empty($emailid)) {
+            echo '<li><a class="emailid-'.$social_size.'" href="mailto:' . $emailid. '" title="Email">Email</a></li>';
+          }                                                        
           echo '</ul></div>';
         }
 
@@ -225,7 +231,10 @@ function team_manager_submenu_page_callback() {
           }
           if (!empty($vimeo)) {
             echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" title="Vimeo">Vimeo</a></li>';
-          }                                              
+          }
+          if (!empty($emailid)) {
+            echo '<li><a class="emailid-'.$social_size.'" href="mailto:' . $emailid. '" title="Email">Email</a></li>';
+          }                                                        
           echo '</ul></div>';
         }    
 
@@ -235,6 +244,9 @@ function team_manager_submenu_page_callback() {
         if (!empty($telephone)) {
           echo '<li><strong>Tel:</strong> '.$telephone.'</li>';
         }
+        if (!empty($location)) {
+          echo '<li><strong>Location:</strong> '.$location.'</li>';
+        }        
         if (!empty($web_url)) {
           echo '<li><strong>Blog:</strong> <a href="'.$web_url.'">Link</a></li>';
         }  

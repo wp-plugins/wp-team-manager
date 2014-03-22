@@ -110,6 +110,9 @@ ul.team-member-socials li a.vimeo-32 {
 ul.team-member-socials li a.dribbble-32 {
 	background: url('../img/social/32/32-dribbble.png');
 }
+ul.team-member-socials li a.emailid-32 {
+	background: url('../img/social/32/32-mail.png');
+}
 ul.size-16 li a{width: 16px;height: 16px;}
 ul.team-member-socials li a.facebook-16 {
 	background: url('../img/social/16/16-facebook.png');
@@ -131,6 +134,9 @@ ul.team-member-socials li a.vimeo-16 {
 }
 ul.team-member-socials li a.dribbble-16 {
 	background: url('../img/social/16/16-dribbble.png');
+}
+ul.team-member-socials li a.emailid-16 {
+	background: url('../img/social/16/16-mail.png');
 }
 ul.team-member-other-info {
 list-style-type: square;
