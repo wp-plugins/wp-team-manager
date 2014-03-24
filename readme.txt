@@ -26,7 +26,7 @@ Features:
 * Setting page.
  
 Contributors:
-[Mike Jordan] (http://profiles.wordpress.org/thaicloud/)
+[Mike Jordan](http://profiles.wordpress.org/thaicloud/)
 
 For help contact me on [Dynamicweblab.com](http://www.dynamicweblab.com/)
 
