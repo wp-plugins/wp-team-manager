@@ -1,5 +1,5 @@
 === WordPress Team Manager ===
-Contributors: maidulcu, thaicloud
+Contributors: maidulcu
 Donate link: http://www.dynamicweblab.com/
 Tags: team manager, team management,teams,shortcode,member,vcard
 Requires at least: 3.0.1
@@ -23,7 +23,10 @@ Features:
 * Control member display order.
 * Exclude members for the list.
 * Shortcode generator.
-* Setting page. 
+* Setting page.
+ 
+Contributors:
+[Mike Jordan] (http://profiles.wordpress.org/thaicloud/)
 
 For help contact me on [Dynamicweblab.com](http://www.dynamicweblab.com/)
 
