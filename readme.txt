@@ -1,5 +1,5 @@
 === WordPress Team Manager ===
-Contributors: maidulcu
+Contributors: maidulcu, thaicloud
 Donate link: http://www.dynamicweblab.com/
 Tags: team manager, team management,teams,shortcode,member,vcard
 Requires at least: 3.0.1
@@ -18,11 +18,12 @@ Features:
 
 * List and Grid view to display team members.
 * Different Image Shapes.
+* Different Image Size.
 * Limit number of team member to display.
 * Control member display order.
 * Exclude members for the list.
 * Shortcode generator.
-* Setting page 
+* Setting page. 
 
 For help contact me on [Dynamicweblab.com](http://www.dynamicweblab.com/)
 
@@ -55,3 +56,6 @@ You can create shortcode generator under Team menu or use this default short cod
 = 1.2 =
 * Add email field on team member page
 * Add featured image support
+
+= 1.3 =
+* Add image size support 
