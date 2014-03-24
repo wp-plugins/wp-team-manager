@@ -77,9 +77,19 @@ function team_manager_submenu_page_callback() {
                   <option value="circle">Circle</option>
                   <option value="boxed">Boxed</option>
                 </select>
-              </p>              
+              </p>
+             <p>
+                <label for="tm_image_size">Select image size:</label>
+                <?php global $_wp_additional_image_sizes; ?>
+                <select id="tm_image_size" name="tm_image_size">
+                  <option value="thumbnail">thumbnail</option>
+                  <?php foreach ($_wp_additional_image_sizes as $size_name => $size_attrs): ?>
+                    <option value="<?php echo esc_attr( $size_name ); ?>"><?php echo esc_html( $size_name ) ; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </p>                           
             </div>
-            <div id="shortcode_output_box">[team_manager category='0' orderby='menu_order' limit='0' exclude='' layout='grid' image_layout='rounded']</div>
+            <div id="shortcode_output_box">[team_manager category='0' orderby='menu_order' limit='0' exclude='' layout='grid' image_layout='rounded' ]</div>
         </form> 
     </div>
 
@@ -87,7 +97,8 @@ function team_manager_submenu_page_callback() {
 
   // Add Shortcode
   function team_manager_fn ($atts, $content = null) {
-
+	
+	global $_wp_additional_image_sizes;
 
     extract( shortcode_atts( array(
       'team_groups' => '',
@@ -97,7 +108,7 @@ function team_manager_submenu_page_callback() {
     ), $atts ) );
 
 
-    // get settings from settign page
+    // get social settings
     $social_size = get_option('tm_social_size');
 
     $asc_desc = 'DESC';
@@ -111,14 +122,15 @@ function team_manager_submenu_page_callback() {
     } 
 
     $layout = $atts['layout'];
-    $image_layout = $atts['image_layout'];    
+    $image_layout = $atts['image_layout']; 
+    $image_size = $atts['image_size'];   
 
     $args = array( 
              'post_type' => 'team_manager',
              'team_groups'=> $atts['category'] ,  
              'posts_per_page'=> $posts_per_page, 
              'orderby' => $atts['orderby'], 
-             'order' => $ascdesc,
+             'order' => $ascdesc
              ); 
 
           if($atts['exclude'] != '0' && $atts['exclude'] != '') {
@@ -143,7 +155,11 @@ function team_manager_submenu_page_callback() {
 
         $post_id = get_the_ID();
         $title = the_title_attribute( 'echo=0' );
-        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );   
+        if( array_key_exists( $image_size, $_wp_additional_image_sizes) ){
+          $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $image_size );   
+        }else{
+          $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );   
+        }          
         $width = $image[1];
         $job_title = get_post_meta($post_id,'tm_jtitle',true);
         $telephone = get_post_meta($post_id,'tm_telephone',true);

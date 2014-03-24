@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
 		tm_remove_id = $( "#tm_remove_id" ).val(),
 		tm_layout = $( "#tm_layout" ).val(),
 		tm_image_layout = $( "#tm_image_layout" ).val();
+		tm_image_size = $( "#tm_image_size" ).val();
 
 		
 	$( '#tm_cat' ).change(function() {
@@ -35,10 +36,15 @@ jQuery(document).ready(function($) {
 		tm_image_layout = $(this).val();
 	});		
 
+	$( '#tm_image_size' ).change(function() {
+
+		tm_image_size = $(this).val();
+ 	});	
+ 	
 	$('#tm_short_code').change(function() {
 
 		var shortcodegenerated = 
-		"[team_manager category='"+catslug+"' orderby='"+orderby+"' limit='"+tm_limit+"' exclude='"+tm_remove_id+"' layout='"+tm_layout+"' image_layout='"+tm_image_layout+"']";
+		"[team_manager category='"+catslug+"' orderby='"+orderby+"' limit='"+tm_limit+"' exclude='"+tm_remove_id+"' layout='"+tm_layout+"' image_layout='"+tm_image_layout+"' image_size='"+tm_image_size+"']";
 
 		$selector.empty().append(shortcodegenerated);
 
