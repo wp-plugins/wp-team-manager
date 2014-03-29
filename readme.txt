@@ -62,3 +62,6 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.3 =
 * Add image size support 
+
+= 1.4 =
+* Fix wrong placement of shortcode

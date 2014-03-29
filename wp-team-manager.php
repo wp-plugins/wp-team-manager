@@ -4,7 +4,7 @@ Plugin Name: WordPress Team Manager
 Plugin URI: http://www.dynamicweblab.com/
 Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
 Author: Dynamicweblab
-Version: 1.3
+Version: 1.4
 Author URI:http://www.dynamicweblab.com/
 License: GPL2
 */
@@ -13,7 +13,7 @@ if (!defined('WTM_VERSION_KEY'))
     define('WTM_VERSION_KEY', 'wtm_version');
 
 if (!defined('WTM_VERSION_NUM'))
-    define('WTM_VERSION_NUM', '1.0.3');
+    define('WTM_VERSION_NUM', '1.0.4');
 
 add_option(WTM_VERSION_KEY, WTM_VERSION_NUM);
 

@@ -98,6 +98,8 @@ function team_manager_submenu_page_callback() {
   // Add Shortcode
   function team_manager_fn ($atts, $content = null) {
 	
+	ob_start();
+	
 	global $_wp_additional_image_sizes;
 
     extract( shortcode_atts( array(
@@ -283,6 +285,8 @@ function team_manager_submenu_page_callback() {
     }
     /* Restore original Post Data */
     wp_reset_postdata();
+    
+    return ob_get_clean();
 
   }
   add_shortcode( 'team_manager', 'team_manager_fn' );
