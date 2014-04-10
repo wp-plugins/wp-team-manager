@@ -157,7 +157,7 @@ function team_manager_submenu_page_callback() {
 
         $post_id = get_the_ID();
         $title = the_title_attribute( 'echo=0' );
-        if( array_key_exists( $image_size, $_wp_additional_image_sizes) ){
+        if (is_array($_wp_additional_image_sizes) && array_key_exists($image_size, $_wp_additional_image_sizes)){
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $image_size );   
         }else{
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );   

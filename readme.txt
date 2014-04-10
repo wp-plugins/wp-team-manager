@@ -65,3 +65,6 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.4 =
 * Fix wrong placement of shortcode
+
+= 1.5 =
+* Fix some bug

@@ -4,7 +4,7 @@ Plugin Name: WordPress Team Manager
 Plugin URI: http://www.dynamicweblab.com/
 Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
 Author: Dynamicweblab
-Version: 1.4
+Version: 1.5
 Author URI:http://www.dynamicweblab.com/
 License: GPL2
 */
@@ -13,7 +13,7 @@ if (!defined('WTM_VERSION_KEY'))
     define('WTM_VERSION_KEY', 'wtm_version');
 
 if (!defined('WTM_VERSION_NUM'))
-    define('WTM_VERSION_NUM', '1.0.4');
+    define('WTM_VERSION_NUM', '1.0.5');
 
 add_option(WTM_VERSION_KEY, WTM_VERSION_NUM);
 
@@ -142,44 +142,10 @@ function custom_upload_mimes ( $existing_mimes=array() ) {
 
 /********************* BEGIN DEFINITION OF META BOXES ***********************/
 
-// prefix of meta keys, optional
-// use underscore (_) at the beginning to make keys hidden, for example $prefix = '_rw_';
-// you also can make prefix empty to disable it
 $prefix = 'tm_';
 
 $meta_boxes = array();
 
-// second meta box
-$meta_boxes[] = array(
-    'id' => 'additional',
-    'title' => 'Additional Information',
-    'pages' => array('post', 'film', 'album'),
-
-    'fields' => array(
-        array(
-            'name' => 'Your thoughts about Deluxe Blog Tips',
-            'id' => $prefix . 'thoughts',
-            'type' => 'wysiwyg',                    // WYSIWYG editor
-            'std' => '<b>It\'s great!</b>',
-            'desc' => 'Do you think so?'
-        ),
-        array(
-            'name' => 'Upload your source code',
-            'desc' => 'Any modified code, or extending code',
-            'id' => $prefix . 'code',
-            'type' => 'file'                        // file upload
-        ),
-        array(
-            'name' => 'Screenshots',
-            'desc' => 'Screenshots of problems, warnings, etc.',
-            'id' => $prefix . 'screenshot',
-            'type' => 'image'                       // image upload
-        )
-    )
-);
-
-
-// first meta box
 $meta_boxes[] = array(
     'id' => 'team_personal',                         // meta box id, unique per meta box
     'title' => 'Team Member Information',          // meta box title
