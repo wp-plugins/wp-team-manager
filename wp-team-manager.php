@@ -332,6 +332,6 @@ function team_manager_add_custom_css()
        echo get_option('tm_custom_css');
        echo '</style>'; 
     } 
-add_action( 'wp_head', 'team_manager_add_custom_css' );       
-   
+add_action( 'wp_head', 'team_manager_add_custom_css' ); 
+
 ?>

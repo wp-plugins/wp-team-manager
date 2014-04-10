@@ -132,7 +132,7 @@ function team_manager_submenu_page_callback() {
              'team_groups'=> $atts['category'] ,  
              'posts_per_page'=> $posts_per_page, 
              'orderby' => $atts['orderby'], 
-             'order' => $ascdesc
+             'order' => $asc_desc
              ); 
 
           if($atts['exclude'] != '0' && $atts['exclude'] != '') {
