@@ -71,3 +71,6 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.5.1 =
 * Fix order bug
+
+= 1.5.2 =
+* Remove some notice
