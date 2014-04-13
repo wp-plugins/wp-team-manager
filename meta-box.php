@@ -438,7 +438,10 @@ class WTM_Meta_Box {
 
 	// Save data from meta box
 	function save($post_id) {
+		global $post_type;
+		if(isset($_POST['post_type'])){
 		$post_type_object = get_post_type_object($_POST['post_type']);
+		}
 
 		if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)						// check autosave
 		|| (!isset($_POST['post_ID']) || $post_id != $_POST['post_ID'])			// check revision

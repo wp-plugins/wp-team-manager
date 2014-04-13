@@ -158,9 +158,9 @@ function team_manager_submenu_page_callback() {
         $post_id = get_the_ID();
         $title = the_title_attribute( 'echo=0' );
         if (is_array($_wp_additional_image_sizes) && array_key_exists($image_size, $_wp_additional_image_sizes)){
-          $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $image_size );   
+          $image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size );   
         }else{
-          $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );   
+          $image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'thumbnail' );   
         }          
         $width = $image[1];
         $job_title = get_post_meta($post_id,'tm_jtitle',true);

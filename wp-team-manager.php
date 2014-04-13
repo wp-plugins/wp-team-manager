@@ -4,7 +4,7 @@ Plugin Name: WordPress Team Manager
 Plugin URI: http://www.dynamicweblab.com/
 Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
 Author: Dynamicweblab
-Version: 1.5.1
+Version: 1.5.2
 Author URI:http://www.dynamicweblab.com/
 License: GPL2
 */
@@ -13,7 +13,7 @@ if (!defined('WTM_VERSION_KEY'))
     define('WTM_VERSION_KEY', 'wtm_version');
 
 if (!defined('WTM_VERSION_NUM'))
-    define('WTM_VERSION_NUM', '1.5.1');
+    define('WTM_VERSION_NUM', '1.5.2');
 
 add_option(WTM_VERSION_KEY, WTM_VERSION_NUM);
 
@@ -41,12 +41,14 @@ add_theme_support( 'post-thumbnails', array( 'team_manager' ) );
 
 function team_manager_featured_image_alttext($translation, $text, $domain) {
     global $post;
-    if ($post->post_type == 'team_manager') {
-            $translations = get_translations_for_domain( $domain);
-            if ( $text == 'Featured Image')
-                return $translations->translate( 'Team Memeber Picture' );
-            if ( $text == 'Set featured image')
-                return $translations->translate( 'Select an image' );         
+    if (is_object($post)){
+		if ($post->post_type == 'team_manager') {
+				$translations = get_translations_for_domain( $domain);
+				if ( $text == 'Featured Image')
+					return $translations->translate( 'Team Memeber Picture' );
+				if ( $text == 'Set featured image')
+					return $translations->translate( 'Select an image' );         
+		}
     }
     return $translation;
 }
@@ -89,7 +91,7 @@ function register_team_manager() {
         'rewrite' => true,
         'capability_type' => 'post',
 		'menu_icon' => plugins_url( 'img/icon16.png',__FILE__),
-		'rewrite' => array( 'slug' => team-manager )
+		'rewrite' => array( 'slug' => 'team-manager' )
 
     );
 
