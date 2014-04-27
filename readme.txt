@@ -2,8 +2,8 @@
 Contributors: maidulcu
 Donate link: http://www.dynamicweblab.com/
 Tags: team manager, team management,teams,shortcode,member,vcard
-Requires at least: 3.0.1
-Tested up to: 3.8.1
+Requires at least: 3.9
+Tested up to: 3.9
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -74,3 +74,6 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.5.2 =
 * Remove some notice
+
+= 1.5.3 =
+* Clean up some code
