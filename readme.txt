@@ -2,7 +2,7 @@
 Contributors: maidulcu
 Donate link: http://www.dynamicweblab.com/
 Tags: team manager, team management,teams,shortcode,member,vcard
-Requires at least: 3.9
+Requires at least: 3.5
 Tested up to: 3.9
 Stable tag: 4.3
 License: GPLv2 or later
