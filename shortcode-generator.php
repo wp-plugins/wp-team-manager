@@ -101,6 +101,22 @@ function team_manager_submenu_page_callback() {
 	ob_start();
 	
 	global $_wp_additional_image_sizes;
+	
+    // get social settings
+    $social_size = get_option('tm_social_size');
+    // get link new window settings
+    $tm_link_new_window = get_option('tm_link_new_window');
+    
+    if($tm_link_new_window=='True'){
+		
+			$link_window = 'target="_blank"';
+		
+		}else{
+			
+			$link_window = '';
+			
+		}	
+	
 
     extract( shortcode_atts( array(
       'team_groups' => '',
@@ -108,10 +124,6 @@ function team_manager_submenu_page_callback() {
       'layout' => 'grid',
       'image_layout' => 'rounded'
     ), $atts ) );
-
-
-    // get social settings
-    $social_size = get_option('tm_social_size');
 
     $asc_desc = 'DESC';
     if ($atts['orderby'] == 'title' || $atts['orderby'] == 'menu_order') {
@@ -190,25 +202,25 @@ function team_manager_submenu_page_callback() {
           
           echo '<ul class="team-member-socials size-'.$social_size.'">';
           if (!empty($facebook)) {
-            echo '<li><a class="facebook-'.$social_size.'" href="' . $facebook. '" title="Facebook">Facebook</a></li>';
+            echo '<li><a class="facebook-'.$social_size.'" href="' . $facebook. '" '.$link_window.' title="Facebook">Facebook</a></li>';
           }
           if (!empty($twitter)) {
-            echo '<li><a class="twitter-'.$social_size.'" href="' . $twitter. '" title="Twitter">Twitter</a></li>';
+            echo '<li><a class="twitter-'.$social_size.'" href="' . $twitter. '" '.$link_window.' title="Twitter">Twitter</a></li>';
           }
           if (!empty($linkedIn)) {
-            echo '<li><a class="linkedIn-'.$social_size.'" href="' . $linkedIn. '" title="LinkedIn">LinkedIn</a></li>';
+            echo '<li><a class="linkedIn-'.$social_size.'" href="' . $linkedIn. '" '.$link_window.' title="LinkedIn">LinkedIn</a></li>';
           }
           if (!empty($googleplus)) {
-            echo '<li><a class="googleplus-'.$social_size.'" href="' . $googleplus. '" title="Google Plus">Google Plus</a></li>';
+            echo '<li><a class="googleplus-'.$social_size.'" href="' . $googleplus. '" '.$link_window.' title="Google Plus">Google Plus</a></li>';
           }
           if (!empty($dribbble)) {
-            echo '<li><a class="dribbble-'.$social_size.'" href="' . $dribbble. '" title="Dribbble">Dribbble</a></li>';
+            echo '<li><a class="dribbble-'.$social_size.'" href="' . $dribbble. '" '.$link_window.' title="Dribbble">Dribbble</a></li>';
           }        
           if (!empty($youtube)) {
-            echo '<li><a class="youtube-'.$social_size.'" href="' . $youtube. '" title="Youtube">Youtube</a></li>';
+            echo '<li><a class="youtube-'.$social_size.'" href="' . $youtube. '" '.$link_window.' title="Youtube">Youtube</a></li>';
           }
           if (!empty($vimeo)) {
-            echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" title="Vimeo">Vimeo</a></li>';
+            echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" '.$link_window.' title="Vimeo">Vimeo</a></li>';
           }
           if (!empty($emailid)) {
             echo '<li><a class="emailid-'.$social_size.'" href="mailto:' . $emailid. '" title="Email">Email</a></li>';
@@ -230,25 +242,25 @@ function team_manager_submenu_page_callback() {
           
           echo '<ul class="team-member-socials size-'.$social_size.'">';
           if (!empty($facebook)) {
-            echo '<li><a class="facebook-'.$social_size.'" href="' . $facebook. '" title="Facebook">Facebook</a></li>';
+            echo '<li><a class="facebook-'.$social_size.'" href="' . $facebook. '" '.$link_window.' title="Facebook">Facebook</a></li>';
           }
           if (!empty($twitter)) {
-            echo '<li><a class="twitter-'.$social_size.'" href="' . $twitter. '" title="Twitter">Twitter</a></li>';
+            echo '<li><a class="twitter-'.$social_size.'" href="' . $twitter. '" '.$link_window.' title="Twitter">Twitter</a></li>';
           }
           if (!empty($linkedIn)) {
-            echo '<li><a class="linkedIn-'.$social_size.'" href="' . $linkedIn. '" title="LinkedIn">LinkedIn</a></li>';
+            echo '<li><a class="linkedIn-'.$social_size.'" href="' . $linkedIn. '" '.$link_window.' title="LinkedIn">LinkedIn</a></li>';
           }
           if (!empty($googleplus)) {
-            echo '<li><a class="googleplus-'.$social_size.'" href="' . $googleplus. '" title="Google Plus">Google Plus</a></li>';
+            echo '<li><a class="googleplus-'.$social_size.'" href="' . $googleplus. '" '.$link_window.' title="Google Plus">Google Plus</a></li>';
           }
           if (!empty($dribbble)) {
-            echo '<li><a class="dribbble-'.$social_size.'" href="' . $dribbble. '" title="Dribbble">Dribbble</a></li>';
+            echo '<li><a class="dribbble-'.$social_size.'" href="' . $dribbble. '" '.$link_window.' title="Dribbble">Dribbble</a></li>';
           }        
           if (!empty($youtube)) {
-            echo '<li><a class="youtube-'.$social_size.'" href="' . $youtube. '" title="Youtube">Youtube</a></li>';
+            echo '<li><a class="youtube-'.$social_size.'" href="' . $youtube. '" '.$link_window.' title="Youtube">Youtube</a></li>';
           }
           if (!empty($vimeo)) {
-            echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" title="Vimeo">Vimeo</a></li>';
+            echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" '.$link_window.' title="Vimeo">Vimeo</a></li>';
           }
           if (!empty($emailid)) {
             echo '<li><a class="emailid-'.$social_size.'" href="mailto:' . $emailid. '" title="Email">Email</a></li>';
@@ -266,10 +278,10 @@ function team_manager_submenu_page_callback() {
           echo '<li><strong>Location:</strong> '.$location.'</li>';
         }        
         if (!empty($web_url)) {
-          echo '<li><strong>Blog:</strong> <a href="'.$web_url.'">Link</a></li>';
+          echo '<li><strong>Blog:</strong> <a href="'.$web_url.'" '.$link_window.'>Link</a></li>';
         }  
         if (!empty($vcard)) {
-          echo '<li><strong>Vcard:</strong> <a href="'.$vcard.'">Download</a></li>';
+          echo '<li><strong>Vcard:</strong> <a href="'.$vcard.'" >Download</a></li>';
         }                                                                
         echo '</ul>';
 

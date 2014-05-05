@@ -14,8 +14,8 @@ function tm_create_menu() {
 function register_mysettings() {
 	//register our settings
 	register_setting( 'tm-settings-group', 'tm_social_size' );
+	register_setting( 'tm-settings-group', 'tm_link_new_window' );
 	register_setting( 'tm-settings-group', 'tm_custom_css' );
-	//register_setting( 'tm-settings-group', 'option_etc' );
 }
 
 function team_manager_setting_function() {
@@ -31,6 +31,7 @@ function team_manager_setting_function() {
     <?php 
     $tm_social_size = get_option('tm_social_size');
     $tm_custom_css = get_option('tm_custom_css');
+    $tm_link_new_window = get_option('tm_link_new_window');
      ?>
     <table class="form-table">
         <tr valign="top">
@@ -42,6 +43,12 @@ function team_manager_setting_function() {
 			</select>
         </td>
         </tr>
+        <tr valign="top">
+        <th scope="row"><label>Open Links On New Window</label></th>
+        <td>
+				<input type="checkbox" name="tm_link_new_window" value="True" <?php if($tm_link_new_window=='True'){ echo 'checked';} ?>> Yes
+        </td>
+        </tr>        
         <tr valign="top">
         <th scope="row"><label>Custom Css:</label></th>
         <td>
