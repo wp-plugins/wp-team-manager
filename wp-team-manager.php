@@ -45,7 +45,7 @@ function team_manager_featured_image_alttext($translation, $text, $domain) {
 		if ($post->post_type == 'team_manager') {
 				$translations = get_translations_for_domain( $domain);
 				if ( $text == 'Featured Image')
-					return $translations->translate( 'Team Memeber Picture' );
+					return $translations->translate( 'Team Member Picture' );
 				if ( $text == 'Set featured image')
 					return $translations->translate( 'Select an image' );         
 		}
