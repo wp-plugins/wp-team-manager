@@ -80,3 +80,6 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.5.4 =
 * Link open on new window option is added on settings page
+
+= 1.5.5 =
+* Translation text is updated
