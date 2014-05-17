@@ -28,10 +28,10 @@ function team_manager_submenu_page_callback() {
 	?>
     
     <div class="wrap"><div id="icon-tools" class="icon32"></div>
-        <h2>Shortcode Generator</h2>
+        <h2><?php _e('Shortcode Generator','wp-team-manager'); ?></h2>
         <div id="shortcode_options_wrapper">
           <form id="tm_short_code">
-            <p><label for="cat">Select Team Group: </label>
+            <p><label for="cat"><?php _e('Select Team Group:','wp-team-manager'); ?> </label>
               <select name="tm_cat" id="tm_cat">
                           
                <option value="0">All Group</option>
@@ -51,7 +51,7 @@ function team_manager_submenu_page_callback() {
             </select>              
             </p>
             <p>
-                <label for="tm_orderby">Order By:</label>
+                <label for="tm_orderby"><?php _e('Order By:','wp-team-manager'); ?></label>
                 <select id="tm_orderby" name="tm_orderby">
                   <option value="menu_order">Default</option>
                   <option value="title">Name</option>
@@ -61,17 +61,17 @@ function team_manager_submenu_page_callback() {
                   <option value="rand">Random</option>
                 </select>
               </p>
-              <p><label for="tm_limit">Number of entries to display: </label><input id="tm_limit" type="text" value="0"></p>
+              <p><label for="tm_limit"><?php _e('Number of entries to display:','wp-team-manager'); ?> </label><input id="tm_limit" type="text" value="0"></p>
                <p><label for="tm_remove_id">Remove ids from list (Example: 1,5,7): </label><input id="tm_remove_id" type="text" value=""></p>
              <p>
-                <label for="tm_layout">Select template:</label>
+                <label for="tm_layout"><?php _e('Select template:','wp-team-manager'); ?></label>
                 <select id="tm_layout" name="tm_layout">
                   <option value="grid">Grid</option>
                   <option value="list">List</option>
                 </select>
               </p>
              <p>
-                <label for="tm_image_layout">Select image style:</label>
+                <label for="tm_image_layout"><?php _e('Select image style:','wp-team-manager'); ?></label>
                 <select id="tm_image_layout" name="tm_layout">
                   <option value="rounded">Rounded</option>
                   <option value="circle">Circle</option>
@@ -79,7 +79,7 @@ function team_manager_submenu_page_callback() {
                 </select>
               </p>
              <p>
-                <label for="tm_image_size">Select image size:</label>
+                <label for="tm_image_size"><?php _e('Select image size:','wp-team-manager'); ?></label>
                 <?php global $_wp_additional_image_sizes; ?>
                 <select id="tm_image_size" name="tm_image_size">
                   <option value="thumbnail">thumbnail</option>

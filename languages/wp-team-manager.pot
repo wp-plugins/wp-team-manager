@@ -8,8 +8,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-01-31 19:33-0000\n"
-"Last-Translator: Bruno Ferreira <bf_2825@yahoo.com.br>\n"
+"PO-Revision-Date: 2014-05-17 13:24+0600\n"
+"Last-Translator: maidul <dynamicweblab@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: pt_PT\n"
@@ -47,68 +47,69 @@ msgstr "Adicionar mais imagens"
 msgid "Select a color"
 msgstr "Seleccionar cor"
 
-#: wp-team-manager.php:39 wp-team-manager.php:50
-msgctxt "team_manager"
+#: wp-team-manager.php:39
+#: wp-team-manager.php:50
+msgctxt "wp-team-manager"
 msgid "Team"
 msgstr "Equipa"
 
 #: wp-team-manager.php:40
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Team Member"
 msgstr "Membro da Equipa"
 
 #: wp-team-manager.php:41
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Add New Member"
 msgstr "Adicionar Novo Membro"
 
 #: wp-team-manager.php:42
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Add New "
 msgstr "Adicionar Novo"
 
 #: wp-team-manager.php:43
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Edit Team Member "
 msgstr "Editar Membro de Equipa"
 
 #: wp-team-manager.php:44
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "New Team Member"
 msgstr "Novo Membro de Equipa"
 
 #: wp-team-manager.php:45
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "View Team Members"
 msgstr "Ver Membros de Equipa"
 
 #: wp-team-manager.php:46
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Search Team Members"
 msgstr "Procurar Membros de Equipa"
 
 #: wp-team-manager.php:47
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Not found any Team Member"
 msgstr "Não foi encontrado nenhum Membro de Equipa"
 
 #: wp-team-manager.php:48
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "No Team Member found in Trash"
 msgstr "Não foi encontrado nenhum Membro de Equipa no Lixo"
 
 #: wp-team-manager.php:49
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Parent Team Member:"
 msgstr "Membro de Equipa Principal:"
 
 #: wp-team-manager.php:78
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Groups"
 msgstr "Grupos"
 
 #: wp-team-manager.php:79
-msgctxt "team_manager"
+msgctxt "wp-team-manager"
 msgid "Group"
 msgstr "Grupo"
 
@@ -160,6 +161,7 @@ msgstr "Não foram encontrados Grupos."
 msgid "Team Groups"
 msgstr "Grupos de Equipa"
 
+
 #. Plugin Name of the plugin/theme
 msgid "WordPress Team Manager"
 msgstr "WordPress Team Manager"
@@ -170,13 +172,10 @@ msgid "http://www.dynamicweblab.com/"
 msgstr "http://www.dynamicweblab.com/"
 
 #. Description of the plugin/theme
-msgid ""
-"This plugin allows you to manage the members of your team or staff and "
-"display them using shortcode."
-msgstr ""
-"Este plugin permite-lhe gerir os membros da sua equipa ou staff  e visualizá-"
-"los através de shortcode."
+msgid "This plugin allows you to manage the members of your team or staff and display them using shortcode."
+msgstr "Este plugin permite-lhe gerir os membros da sua equipa ou staff  e visualizá-los através de shortcode."
 
 #. Author of the plugin/theme
 msgid "maidul"
 msgstr "maidul"
+
