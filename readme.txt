@@ -83,3 +83,6 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.5.5 =
 * Translation text is updated
+
+= 1.5.6 =
+* Make compatable with qTranslate plugin and clean up coding

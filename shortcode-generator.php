@@ -163,7 +163,7 @@ function team_manager_submenu_page_callback() {
 
     // The Loop
     if ( $tm_loop->have_posts() ) {     
-            echo '<ul class="team-list">';
+      echo '<ul class="team-list">';
       while ( $tm_loop->have_posts() ) {
         $tm_loop->the_post();
 
@@ -229,8 +229,8 @@ function team_manager_submenu_page_callback() {
         }
 
         echo "<div class='team-member-des'>";
-        echo '<h2 class="team-title">' . $title. '</h2>';
-        echo '<h4 class="team-position">' . $job_title. '</h4>';
+        echo '<h2 class="team-title">' . __($title,'wp-team-manager'). '</h2>';
+        echo '<h4 class="team-position">'. __($job_title,'wp-team-manager') .'</h4>';
 
         if ($layout=='list') {
           echo '<div class="team-member-info">';
@@ -272,16 +272,16 @@ function team_manager_submenu_page_callback() {
 
         echo '<ul class="team-member-other-info">';
         if (!empty($telephone)) {
-          echo '<li><strong>Tel:</strong> '.$telephone.'</li>';
+          echo '<li><strong>Tel:</strong> '.__($telephone,'wp-team-manager').'</li>';
         }
         if (!empty($location)) {
-          echo '<li><strong>Location:</strong> '.$location.'</li>';
+          echo '<li><strong>Location:</strong> '.__($location,'wp-team-manager').'</li>';
         }        
         if (!empty($web_url)) {
-          echo '<li><strong>Blog:</strong> <a href="'.$web_url.'" '.$link_window.'>Link</a></li>';
+          echo '<li><strong>Blog:</strong> <a href="'.$web_url.'" '.$link_window.'>'.__('Link','wp-team-manager').'</a></li>';
         }  
         if (!empty($vcard)) {
-          echo '<li><strong>Vcard:</strong> <a href="'.$vcard.'" >Download</a></li>';
+          echo '<li><strong>Vcard:</strong> <a href="'.$vcard.'" >'.__('Download','wp-team-manager').'</a></li>';
         }                                                                
         echo '</ul>';
 
@@ -290,7 +290,7 @@ function team_manager_submenu_page_callback() {
         echo '</li>';
 
       }
-          echo '</ul>';
+        echo '</ul>';
 
     } else {
       // no posts found
