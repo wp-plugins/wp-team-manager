@@ -31,7 +31,7 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
 width: 100%;
 margin-right: 0;
 text-align: center;
-max-width: 170px;
+min-width: 170px;
 float: right;
 }
 .list .team-member-des {
@@ -63,6 +63,7 @@ padding-bottom: 10px;
 
 img.team-picture {
 margin: 5px;
+max-width: 95% !important;
 }
 .grid img.team-picture {
 margin: 0px;
