@@ -3,7 +3,7 @@ Contributors: maidulcu
 Donate link: http://www.dynamicweblab.com/
 Tags: team manager, team management,teams,shortcode,member,vcard
 Requires at least: 3.5
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,9 +21,11 @@ Features:
 * Different Image Size.
 * Limit number of team member to display.
 * Control member display order.
+* Display selected team member.
 * Exclude members for the list.
 * Shortcode generator.
-* Setting page.
+* Layout edit option.
+* Custom CSS option.
  
 Contributors:
 [Mike Jordan](http://profiles.wordpress.org/thaicloud/)
@@ -86,3 +88,9 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.5.6 =
 * Make compatable with qTranslate plugin and clean up coding
+
+= 1.5.7 =
+* Added design layout option on setting page.
+* Show selected member only using shortcode.
+* Improved UI design.
+

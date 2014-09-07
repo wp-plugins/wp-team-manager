@@ -1,37 +1,4 @@
 <?php
-/*
-Plugin Name: WordPress Team Manager
-Plugin URI: http://www.dynamicweblab.com/
-Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
-Author: maidul
-Version: 1.1
-Author URI:http://www.dynamicweblab.com/
-License: GPL2
-*/
-
-if (!defined('WTM_VERSION_KEY'))
-    define('WTM_VERSION_KEY', 'wtm_version');
-
-if (!defined('WTM_VERSION_NUM'))
-    define('WTM_VERSION_NUM', '1.0.0');
-
-add_option(WTM_VERSION_KEY, WTM_VERSION_NUM);
-
-define( 'PLUGIN_DIR', dirname(__FILE__).'/' );
-
-//include language
-
-load_plugin_textdomain('your-unique-name', false, basename( dirname( __FILE__ ) ) . '/languages' );
-
-//include Meta Box Class
-require_once PLUGIN_DIR . '/meta-box.php';
-
-//include Shortcode Generator
-require_once PLUGIN_DIR . '/shortcode-generator.php';
-
-//include Settings
-require_once PLUGIN_DIR . '/settings.php';
-
 //Adding the necessary actions
 add_action('init', 'register_team_manager' );
 
@@ -39,24 +6,24 @@ add_action('init', 'register_team_manager' );
 function register_team_manager() {
 
     $labels = array( 
-        'name' => _x( 'Team', 'team_manager' ),
-        'singular_name' => _x( 'Team Member', 'team_manager' ),
-        'add_new' => _x( 'Add New Member', 'team_manager' ),
-        'add_new_item' => _x( 'Add New ', 'team_manager' ),
-        'edit_item' => _x( 'Edit Team Member ', 'team_manager' ),
-        'new_item' => _x( 'New Team Member', 'team_manager' ),
-        'view_item' => _x( 'View Team Members', 'team_manager' ),
-        'search_items' => _x( 'Search Team Members', 'team_manager' ),
-        'not_found' => _x( 'Not found any Team Member', 'team_manager' ),
-        'not_found_in_trash' => _x( 'No Team Member found in Trash', 'team_manager' ),
-        'parent_item_colon' => _x( 'Parent Team Member:', 'team_manager' ),
-        'menu_name' => _x( 'Team', 'team_manager' ),
+        'name' => _x( 'Team', 'wp-team-manager' ),
+        'singular_name' => _x( 'Team Member', 'wp-team-manager' ),
+        'add_new' => _x( 'Add New Member', 'wp-team-manager' ),
+        'add_new_item' => _x( 'Add New ', 'wp-team-manager' ),
+        'edit_item' => _x( 'Edit Team Member ', 'wp-team-manager' ),
+        'new_item' => _x( 'New Team Member', 'wp-team-manager' ),
+        'view_item' => _x( 'View Team Members', 'wp-team-manager' ),
+        'search_items' => _x( 'Search Team Members', 'wp-team-manager' ),
+        'not_found' => _x( 'Not found any Team Member', 'wp-team-manager' ),
+        'not_found_in_trash' => _x( 'No Team Member found in Trash', 'wp-team-manager' ),
+        'parent_item_colon' => _x( 'Parent Team Member:', 'wp-team-manager' ),
+        'menu_name' => _x( 'Team', 'wp-team-manager' ),
     );
 	
     $args = array( 
         'labels' => $labels,
         'hierarchical' => false,        
-        'supports' => array( 'title', 'thumbnail', 'custom-fields','editor','page-attributes'),
+        'supports' => array( 'title', 'thumbnail','editor','page-attributes'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,       
@@ -68,8 +35,8 @@ function register_team_manager() {
         'can_export' => true,
         'rewrite' => true,
         'capability_type' => 'post',
-		'menu_icon' => plugins_url( 'img/icon16.png',__FILE__),
-		'rewrite' => array( 'slug' => team-manager )
+		'menu_icon' => plugins_url( '../img/icon16.png',__FILE__),
+		'rewrite' => array( 'slug' => 'team-manager' )
 
     );
 
@@ -78,22 +45,22 @@ function register_team_manager() {
     //register custom category for the team manager
 
     $labels = array(
-        'name'                       => _x( 'Groups', 'team_manager' ),
-        'singular_name'              => _x( 'Group', 'team_manager' ),
-        'search_items'               => __( 'Search Groups' ),
-        'popular_items'              => __( 'Popular Groups' ),
-        'all_items'                  => __( 'All Groups' ),
+        'name'                       => _x( 'Groups', 'wp-team-manager' ),
+        'singular_name'              => _x( 'Group', 'wp-team-manager' ),
+        'search_items'               => _x( 'Search Groups', 'wp-team-manager' ),
+        'popular_items'              => _x( 'Popular Groups', 'wp-team-manager' ),
+        'all_items'                  => _x( 'All Groups', 'wp-team-manager' ),
         'parent_item'                => null,
         'parent_item_colon'          => null,
-        'edit_item'                  => __( 'Edit Group' ),
-        'update_item'                => __( 'Update Group' ),
-        'add_new_item'               => __( 'Add New Group' ),
-        'new_item_name'              => __( 'New Group Name' ),
-        'separate_items_with_commas' => __( 'Separate Groups with commas' ),
-        'add_or_remove_items'        => __( 'Add or remove Groups' ),
-        'choose_from_most_used'      => __( 'Choose from the most used Groups' ),
-        'not_found'                  => __( 'No Groups found.' ),
-        'menu_name'                  => __( 'Team Groups' ),
+        'edit_item'                  => _x( 'Edit Group', 'wp-team-manager' ),
+        'update_item'                => _x( 'Update Group', 'wp-team-manager' ),
+        'add_new_item'               => _x( 'Add New Group', 'wp-team-manager' ),
+        'new_item_name'              => _x( 'New Group Name', 'wp-team-manager' ),
+        'separate_items_with_commas' => _x( 'Separate Groups with commas', 'wp-team-manager' ),
+        'add_or_remove_items'        => _x( 'Add or remove Groups', 'wp-team-manager' ),
+        'choose_from_most_used'      => _x( 'Choose from the most used Groups', 'wp-team-manager' ),
+        'not_found'                  => _x( 'No Groups found.', 'wp-team-manager' ),
+        'menu_name'                  => _x( 'Team Groups', 'wp-team-manager' ),
     );
 
     $args = array(
@@ -122,44 +89,10 @@ function custom_upload_mimes ( $existing_mimes=array() ) {
 
 /********************* BEGIN DEFINITION OF META BOXES ***********************/
 
-// prefix of meta keys, optional
-// use underscore (_) at the beginning to make keys hidden, for example $prefix = '_rw_';
-// you also can make prefix empty to disable it
 $prefix = 'tm_';
 
 $meta_boxes = array();
 
-// second meta box
-$meta_boxes[] = array(
-    'id' => 'additional',
-    'title' => 'Additional Information',
-    'pages' => array('post', 'film', 'album'),
-
-    'fields' => array(
-        array(
-            'name' => 'Your thoughts about Deluxe Blog Tips',
-            'id' => $prefix . 'thoughts',
-            'type' => 'wysiwyg',                    // WYSIWYG editor
-            'std' => '<b>It\'s great!</b>',
-            'desc' => 'Do you think so?'
-        ),
-        array(
-            'name' => 'Upload your source code',
-            'desc' => 'Any modified code, or extending code',
-            'id' => $prefix . 'code',
-            'type' => 'file'                        // file upload
-        ),
-        array(
-            'name' => 'Screenshots',
-            'desc' => 'Screenshots of problems, warnings, etc.',
-            'id' => $prefix . 'screenshot',
-            'type' => 'image'                       // image upload
-        )
-    )
-);
-
-
-// first meta box
 $meta_boxes[] = array(
     'id' => 'team_personal',                         // meta box id, unique per meta box
     'title' => 'Team Member Information',          // meta box title
@@ -170,36 +103,36 @@ $meta_boxes[] = array(
     'fields' => array(                          // list of meta fields
         
         array(
-            'name' => 'Job Title',                  // field name
-            'desc' => 'Job title of this team member.', // field description, optional
+            'name' => __('Job Title','wp-team-manager'),                  // field name
+            'desc' => __('Job title of this team member.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'jtitle',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
-            'std' => 'Web Designer'                    // default value, optional
+            'std' => __('')                    // default value, optional
         ),
         array(
-            'name' => 'Telephone',                  // field name
-            'desc' => 'Telephone no of this team member.', // field description, optional
+            'name' => __('Telephone','wp-team-manager'),                  // field name
+            'desc' => __('Telephone no of this team member.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'telephone',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),
         array(
-            'name' => 'Location',                  // field name
-            'desc' => 'Location of this team member.', // field description, optional
+            'name' => __('Location','wp-team-manager'),                // field name
+            'desc' => __('Location of this team member.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'location',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),
         array(
-            'name' => 'Web URL',                  // field name
-            'desc' => 'Website url of this team member.', // field description, optional
+            'name' => __('Web URL','wp-team-manager'),                  // field name
+            'desc' => __('Website url of this team member.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'web_url',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),                
         array(
-            'name' => 'VCARD',
-            'desc' => 'Upload your VCARD',
+            'name' => __('VCARD','wp-team-manager'),
+            'desc' => __('Upload your VCARD','wp-team-manager'),
             'id' => $prefix . 'vcard',
             'type' => 'file'                        // file upload
         )
@@ -209,7 +142,7 @@ $meta_boxes[] = array(
 // first meta box
 $meta_boxes[] = array(
     'id' => 'team_social',                         // meta box id, unique per meta box
-    'title' => 'Social Profile',          // meta box title
+    'title' => __('Social Profile','wp-team-manager'),          // meta box title
     'pages' => array('team_manager'),  // post types, accept custom post types as well, default is array('post'); optional
     'context' => 'normal',                      // where the meta box appear: normal (default), advanced, side; optional
     'priority' => 'high',                       // order of meta box: high (default), low; optional
@@ -217,51 +150,58 @@ $meta_boxes[] = array(
     'fields' => array(                          // list of meta fields
         
         array(
-            'name' => 'Facebook',                  // field name
-            'desc' => 'Facebook profile or page link.', // field description, optional
+            'name' => __('Facebook','wp-team-manager'),                 // field name
+            'desc' => __('Facebook profile or page link.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'flink',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),
         array(
-            'name' => 'Twitter',                  // field name
-            'desc' => 'Twitter profile link.', // field description, optional
+            'name' => __('Twitter','wp-team-manager'),                  // field name
+            'desc' => __('Twitter profile link.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'tlink',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),
         array(
-            'name' => 'LinkedIn',                  // field name
-            'desc' => 'LinkedIn profile link.', // field description, optional
+            'name' => __('LinkedIn','wp-team-manager'),                  // field name
+            'desc' => __('LinkedIn profile link.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'llink',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),
         array(
-            'name' => 'Google Plus',                  // field name
-            'desc' => 'Google Plus profile link.', // field description, optional
+            'name' => __('Google Plus','wp-team-manager'),                 // field name
+            'desc' => __('Google Plus profile link.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'gplink',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),
         array(
-            'name' => 'Dribbble',                  // field name
-            'desc' => 'Dribbble profile link.', // field description, optional
+            'name' => __('Dribbble','wp-team-manager'),                  // field name
+            'desc' => __('Dribbble profile link.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'dribbble',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),        
         array(
-            'name' => 'Youtube',                  // field name
-            'desc' => 'Youtube profile link.', // field description, optional
+            'name' => __('Youtube','wp-team-manager'),                 // field name
+            'desc' => __('Youtube profile link.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'ylink',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         ),
         array(
-            'name' => 'Vimeo',                  // field name
-            'desc' => 'Vimeo profile link.', // field description, optional
+            'name' => __('Vimeo','wp-team-manager'),                  // field name
+            'desc' => __('Vimeo profile link.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'vlink',              // field id, i.e. the meta key
+            'type' => 'text',                       // text box
+            'std' => ''                    // default value, optional
+        ),
+        array(
+            'name' => __('Email','wp-team-manager'),                  // field name
+            'desc' => __('Email Id','wp-team-manager'), // field description, optional
+            'id' => $prefix . 'emailid',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
             'std' => ''                    // default value, optional
         )
@@ -318,27 +258,7 @@ class WTM_Meta_Box_Taxonomy extends WTM_Meta_Box {
 }
 
 foreach ($meta_boxes as $meta_box) {
-    $my_box = new WTM_Meta_Box_Taxonomy($meta_box);
+    $wptm_box = new WTM_Meta_Box_Taxonomy($meta_box);
 }
 
 /********************* END DEFINITION OF META BOXES ***********************/
-
-
-/********************* CSS enqueue functions ***********************/
-
-function team_manager_add_css() {
-            wp_register_style( 'team-manager-style', plugins_url( '/css/tm-style.css', __FILE__ ),array(),false,false);
-            wp_enqueue_style( 'team-manager-style' );  
-
-    }
-add_action( 'wp_head', 'team_manager_add_css' ); 
-
-function team_manager_add_custom_css()
-    {
-       echo '<style type="text/css" media="screen">';
-       echo get_option('tm_custom_css');
-       echo '</style>'; 
-    } 
-add_action( 'wp_head', 'team_manager_add_custom_css' );       
-   
-?>

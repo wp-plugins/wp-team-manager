@@ -62,6 +62,7 @@ function team_manager_submenu_page_callback() {
                 </select>
               </p>
               <p><label for="tm_limit"><?php _e('Number of entries to display:','wp-team-manager'); ?> </label><input id="tm_limit" type="text" value="0"></p>
+               <p><label for="tm_show_id">Show this ids only (Example: 1,2,3): </label><input id="tm_show_id" type="text" value=""></p>
                <p><label for="tm_remove_id">Remove ids from list (Example: 1,5,7): </label><input id="tm_remove_id" type="text" value=""></p>
              <p>
                 <label for="tm_layout"><?php _e('Select template:','wp-team-manager'); ?></label>
@@ -87,9 +88,9 @@ function team_manager_submenu_page_callback() {
                     <option value="<?php echo esc_attr( $size_name ); ?>"><?php echo esc_html( $size_name ) ; ?></option>
                   <?php endforeach; ?>
                 </select>
-              </p>                           
+              </p>                          
             </div>
-            <div id="shortcode_output_box">[team_manager category='0' orderby='menu_order' limit='0' exclude='' layout='grid' image_layout='rounded' ]</div>
+            <div id="shortcode_output_box">[team_manager category='0' orderby='menu_order' limit='0' post__in='' exclude='' layout='grid' image_layout='rounded' ]</div>
         </form> 
     </div>
 
@@ -98,14 +99,43 @@ function team_manager_submenu_page_callback() {
   // Add Shortcode
   function team_manager_fn ($atts, $content = null) {
 	
-	ob_start();
-	
 	global $_wp_additional_image_sizes;
 	
     // get social settings
     $social_size = get_option('tm_social_size');
     // get link new window settings
     $tm_link_new_window = get_option('tm_link_new_window');
+
+    $tm_custom_template = get_option('tm_custom_template');
+
+    //If there is no tm_social_size then load default
+    if (!$social_size) {
+      $social_size=16;
+    }
+    
+    //If there is no tm_custom_template then load default
+
+    if (!$tm_custom_template) {
+
+      $tm_custom_template='<div class="%layout%">
+    <div class="team-member-info">
+    %image%
+     %sociallinks%
+    </div><div class="team-member-des">
+    <h2 class="team-title">%title%</h2>
+    <h4 class="team-position">%jobtitle%</h4>
+    %content%
+    <ul class="team-member-other-info">
+    <li><strong>Tel:</strong> %tel%</li>
+    <li><strong>Location:</strong> %location%</li>
+    <li><a href="%biolink%">Web URL</a></li>
+    <li><strong>Vcard:</strong> <a href="%vcard%" >Download</a></li>
+    </ul>
+    </div>
+    </div>';
+      
+    }
+
     
     if($tm_link_new_window=='True'){
 		
@@ -126,11 +156,13 @@ function team_manager_submenu_page_callback() {
     ), $atts ) );
 
     $asc_desc = 'DESC';
+
     if ($atts['orderby'] == 'title' || $atts['orderby'] == 'menu_order') {
       $asc_desc = 'ASC';
     }
 
     $posts_per_page = -1;
+
     if($atts['limit'] >= 1) { 
     $posts_per_page = $atts['limit'];
     } 
@@ -159,22 +191,45 @@ function team_manager_submenu_page_callback() {
 
           }
 
+          if($atts['post__in'] != '0' && $atts['post__in'] != '') {
+
+           $postarray = explode(',', $atts['post__in']);
+
+           if($postarray[0]!='') {
+
+            $args['post__in'] = $postarray;
+
+            }
+
+          }    
+
     $tm_loop = new WP_Query( $args );      
 
     // The Loop
-    if ( $tm_loop->have_posts() ) {     
-      echo '<ul class="team-list">';
+    if ( $tm_loop->have_posts() ) { 
+      $output = '';    
+      $output .= '<div class="team-list">';
       while ( $tm_loop->have_posts() ) {
         $tm_loop->the_post();
 
         $post_id = get_the_ID();
+
         $title = the_title_attribute( 'echo=0' );
+        $content = get_the_content();
+
         if (is_array($_wp_additional_image_sizes) && array_key_exists($image_size, $_wp_additional_image_sizes)){
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size );   
         }else{
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'thumbnail' );   
         }          
         $width = $image[1];
+
+        if (isset($image[0])) {
+          $image = "<img class='team-picture ".$image_layout."' src='".$image[0]."' width='".$width."' title='".$title."' />";
+        }else{
+          $image = "<img class='team-picture ".$image_layout."' src='".plugins_url( 'img/demo.gif',__FILE__)."' width='150' title='".$title."' />";
+        }
+
         $job_title = get_post_meta($post_id,'tm_jtitle',true);
         $telephone = get_post_meta($post_id,'tm_telephone',true);
         $location = get_post_meta($post_id,'tm_location',true);
@@ -190,116 +245,50 @@ function team_manager_submenu_page_callback() {
         $emailid = get_post_meta($post_id,'tm_emailid',true);
           
 
-        echo '<li class="'.$layout.'">';
-
-        if ($layout=='grid') {
-          echo '<div class="team-member-info">';
-          if (isset($image[0])) {
-            echo "<img class='team-picture ".$image_layout."' src='".$image[0]."' width='".$width."' title='".$title."' />";
-          }else{
-            echo "<img class='team-picture ".$image_layout."' src='".plugins_url( 'img/demo.gif',__FILE__)."' width='150' title='".$title."' />";
-          }
-          
-          echo '<ul class="team-member-socials size-'.$social_size.'">';
-          if (!empty($facebook)) {
-            echo '<li><a class="facebook-'.$social_size.'" href="' . $facebook. '" '.$link_window.' title="Facebook">Facebook</a></li>';
-          }
-          if (!empty($twitter)) {
-            echo '<li><a class="twitter-'.$social_size.'" href="' . $twitter. '" '.$link_window.' title="Twitter">Twitter</a></li>';
-          }
-          if (!empty($linkedIn)) {
-            echo '<li><a class="linkedIn-'.$social_size.'" href="' . $linkedIn. '" '.$link_window.' title="LinkedIn">LinkedIn</a></li>';
-          }
-          if (!empty($googleplus)) {
-            echo '<li><a class="googleplus-'.$social_size.'" href="' . $googleplus. '" '.$link_window.' title="Google Plus">Google Plus</a></li>';
-          }
-          if (!empty($dribbble)) {
-            echo '<li><a class="dribbble-'.$social_size.'" href="' . $dribbble. '" '.$link_window.' title="Dribbble">Dribbble</a></li>';
-          }        
-          if (!empty($youtube)) {
-            echo '<li><a class="youtube-'.$social_size.'" href="' . $youtube. '" '.$link_window.' title="Youtube">Youtube</a></li>';
-          }
-          if (!empty($vimeo)) {
-            echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" '.$link_window.' title="Vimeo">Vimeo</a></li>';
-          }
-          if (!empty($emailid)) {
-            echo '<li><a class="emailid-'.$social_size.'" href="mailto:' . $emailid. '" title="Email">Email</a></li>';
-          }                                                        
-          echo '</ul></div>';
+        $sociallinks = '<ul class="team-member-socials size-'.$social_size.'">';
+        if (!empty($facebook)) {
+          $sociallinks .= '<li><a class="facebook-'.$social_size.'" href="' . $facebook. '" '.$link_window.' title="Facebook">Facebook</a></li>';
         }
-
-        echo "<div class='team-member-des'>";
-        echo '<h2 class="team-title">' . __($title,'wp-team-manager'). '</h2>';
-        echo '<h4 class="team-position">'. __($job_title,'wp-team-manager') .'</h4>';
-
-        if ($layout=='list') {
-          echo '<div class="team-member-info">';
-          if (isset($image[0])) {
-            echo "<img class='team-picture ".$image_layout."' src='".$image[0]."' width='".$width."' title='".$title."' />";
-          }else{
-            echo "<img class='team-picture ".$image_layout."' src='".plugins_url( 'img/demo.gif',__FILE__)."' width='150' title='".$title."' />";
-          }
-          
-          echo '<ul class="team-member-socials size-'.$social_size.'">';
-          if (!empty($facebook)) {
-            echo '<li><a class="facebook-'.$social_size.'" href="' . $facebook. '" '.$link_window.' title="Facebook">Facebook</a></li>';
-          }
-          if (!empty($twitter)) {
-            echo '<li><a class="twitter-'.$social_size.'" href="' . $twitter. '" '.$link_window.' title="Twitter">Twitter</a></li>';
-          }
-          if (!empty($linkedIn)) {
-            echo '<li><a class="linkedIn-'.$social_size.'" href="' . $linkedIn. '" '.$link_window.' title="LinkedIn">LinkedIn</a></li>';
-          }
-          if (!empty($googleplus)) {
-            echo '<li><a class="googleplus-'.$social_size.'" href="' . $googleplus. '" '.$link_window.' title="Google Plus">Google Plus</a></li>';
-          }
-          if (!empty($dribbble)) {
-            echo '<li><a class="dribbble-'.$social_size.'" href="' . $dribbble. '" '.$link_window.' title="Dribbble">Dribbble</a></li>';
-          }        
-          if (!empty($youtube)) {
-            echo '<li><a class="youtube-'.$social_size.'" href="' . $youtube. '" '.$link_window.' title="Youtube">Youtube</a></li>';
-          }
-          if (!empty($vimeo)) {
-            echo '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" '.$link_window.' title="Vimeo">Vimeo</a></li>';
-          }
-          if (!empty($emailid)) {
-            echo '<li><a class="emailid-'.$social_size.'" href="mailto:' . $emailid. '" title="Email">Email</a></li>';
-          }                                                        
-          echo '</ul></div>';
-        }    
-
-        echo  the_content();
-
-        echo '<ul class="team-member-other-info">';
-        if (!empty($telephone)) {
-          echo '<li><strong>Tel:</strong> '.__($telephone,'wp-team-manager').'</li>';
+        if (!empty($twitter)) {
+          $sociallinks .= '<li><a class="twitter-'.$social_size.'" href="' . $twitter. '" '.$link_window.' title="Twitter">Twitter</a></li>';
         }
-        if (!empty($location)) {
-          echo '<li><strong>Location:</strong> '.__($location,'wp-team-manager').'</li>';
+        if (!empty($linkedIn)) {
+          $sociallinks .= '<li><a class="linkedIn-'.$social_size.'" href="' . $linkedIn. '" '.$link_window.' title="LinkedIn">LinkedIn</a></li>';
+        }
+        if (!empty($googleplus)) {
+          $sociallinks .= '<li><a class="googleplus-'.$social_size.'" href="' . $googleplus. '" '.$link_window.' title="Google Plus">Google Plus</a></li>';
+        }
+        if (!empty($dribbble)) {
+          $sociallinks .= '<li><a class="dribbble-'.$social_size.'" href="' . $dribbble. '" '.$link_window.' title="Dribbble">Dribbble</a></li>';
         }        
-        if (!empty($web_url)) {
-          echo '<li><strong>Blog:</strong> <a href="'.$web_url.'" '.$link_window.'>'.__('Link','wp-team-manager').'</a></li>';
-        }  
-        if (!empty($vcard)) {
-          echo '<li><strong>Vcard:</strong> <a href="'.$vcard.'" >'.__('Download','wp-team-manager').'</a></li>';
-        }                                                                
-        echo '</ul>';
+        if (!empty($youtube)) {
+          $sociallinks .= '<li><a class="youtube-'.$social_size.'" href="' . $youtube. '" '.$link_window.' title="Youtube">Youtube</a></li>';
+        }
+        if (!empty($vimeo)) {
+          $sociallinks .= '<li><a class="vimeo-'.$social_size.'" href="' . $vimeo. '" '.$link_window.' title="Vimeo">Vimeo</a></li>';
+        }
+        if (!empty($emailid)) {
+          $sociallinks .= '<li><a class="emailid-'.$social_size.'" href="mailto:' . $emailid. '" title="Email">Email</a></li>';
+        }                                                        
+        $sociallinks .= '</ul>';
 
-        echo "</div>";
 
-        echo '</li>';
+        $find = array('/%layout%/i','/%title%/i', '/%content%/i', '/%image%/i','/%jobtitle%/i','/%tel%/i','/%location%/i','/%biolink%/i','/%vcard%/i','/%sociallinks%/i');
+        $replace = array($layout,$title, $content,$image,$job_title,$telephone,$location,$web_url,$vcard,$sociallinks);
+        
+        $output .= preg_replace($find, $replace, $tm_custom_template);
+
 
       }
-        echo '</ul>';
+        $output .= '</div>';
 
     } else {
       // no posts found
     }
     /* Restore original Post Data */
     wp_reset_postdata();
-    
-    return ob_get_clean();
 
+    return $output;
   }
   add_shortcode( 'team_manager', 'team_manager_fn' );
 
