@@ -94,3 +94,5 @@ You can create shortcode generator under Team menu or use this default short cod
 * Show selected member only using shortcode.
 * Improved UI design.
 
+= 1.5.8 =
+* Fix Design layout bug

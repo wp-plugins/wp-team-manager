@@ -125,12 +125,7 @@ function team_manager_submenu_page_callback() {
     <h2 class="team-title">%title%</h2>
     <h4 class="team-position">%jobtitle%</h4>
     %content%
-    <ul class="team-member-other-info">
-    <li><strong>Tel:</strong> %tel%</li>
-    <li><strong>Location:</strong> %location%</li>
-    <li><a href="%biolink%">Web URL</a></li>
-    <li><strong>Vcard:</strong> <a href="%vcard%" >Download</a></li>
-    </ul>
+    %otherinfo%
     </div>
     </div>';
       
@@ -273,8 +268,24 @@ function team_manager_submenu_page_callback() {
         $sociallinks .= '</ul>';
 
 
-        $find = array('/%layout%/i','/%title%/i', '/%content%/i', '/%image%/i','/%jobtitle%/i','/%tel%/i','/%location%/i','/%biolink%/i','/%vcard%/i','/%sociallinks%/i');
-        $replace = array($layout,$title, $content,$image,$job_title,$telephone,$location,$web_url,$vcard,$sociallinks);
+        $otherinfo = '<ul class="team-member-other-info">';
+        if (!empty($telephone)) {
+          $otherinfo .= '<li><strong>Tel: </strong>'.$telephone.'</li>';
+        }
+        if (!empty($location)) {
+          $otherinfo .= '<li><strong>Location: </strong>'.$location.'</li>';
+        }
+        if (!empty($web_url)) {
+          $otherinfo .= '<li><strong>Web URL: </strong><a href="'.$web_url.'" >Link</a></li>';
+        }
+        if (!empty($vcard)) {
+          $otherinfo .= '<li><strong>Vcard: </strong><a href="'.$vcard.'" >Download</a></li>';
+        }                                               
+        $otherinfo .= '</ul>';
+
+
+        $find = array('/%layout%/i','/%title%/i', '/%content%/i', '/%image%/i','/%jobtitle%/i','/%otherinfo%/i','/%sociallinks%/i');
+        $replace = array($layout,$title, $content,$image,$job_title,$otherinfo,$sociallinks);
         
         $output .= preg_replace($find, $replace, $tm_custom_template);
 

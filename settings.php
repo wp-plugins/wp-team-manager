@@ -78,12 +78,7 @@ function team_manager_setting_function() {
     <h2 class="team-title">%title%</h2>
     <h4 class="team-position">%jobtitle%</h4>
     %content%
-    <ul class="team-member-other-info">
-    <li><strong>Tel:</strong> %tel%</li>
-    <li><strong>Location:</strong> %location%</li>
-    <li><a href="%biolink%">Web URL</a></li>
-    <li><strong>Vcard:</strong> <a href="%vcard%" >Download</a></li>
-    </ul>
+    %otherinfo%
     </div>
     </div>';
     }
@@ -111,7 +106,7 @@ function team_manager_setting_function() {
     <h3 class="wptm_title"><?php _e('HTML Template', 'wp-team-manager'); ?></h3>
     <p><?php _e('Edit the HTML template if you want to customize it.', 'wp-team-manager'); ?></p>
     <p><?php _e('Here is the list of available tags.', 'wp-team-manager'); ?></p>
-    <p><?php _e('<code>%title%</code> , <code>%content%</code> , <code>%image%</code>, <code>%sociallinks%</code>, <code>%jobtitle%</code>, <code>%tel%</code>, <code>%location%</code>, <code>%biolink%</code>, <code>%vcard%</code>', 'wp-team-manager'); ?></p>
+    <p><?php _e('<code>%title%</code> , <code>%content%</code> , <code>%image%</code>, <code>%sociallinks%</code>, <code>%jobtitle%</code>, <code>%%otherinfo%%</code>', 'wp-team-manager'); ?></p>
     <textarea name="tm_custom_template" id="tm_custom_template" class="wp-editor-area" rows="10" cols="80"><?php echo $tm_custom_template; ?></textarea>
 
     <!-- Custom CSS -->
