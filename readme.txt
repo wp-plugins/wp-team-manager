@@ -96,3 +96,6 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.5.8 =
 * Fix Design layout bug
+
+= 1.5.9 =
+* Fix <br> tag bug

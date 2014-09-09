@@ -211,6 +211,9 @@ function team_manager_submenu_page_callback() {
 
         $title = the_title_attribute( 'echo=0' );
         $content = get_the_content();
+        $content = get_the_content();
+        $content = apply_filters('the_content', $content);
+        $content = str_replace(']]>', ']]&gt;', $content);        
 
         if (is_array($_wp_additional_image_sizes) && array_key_exists($image_size, $_wp_additional_image_sizes)){
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size );   

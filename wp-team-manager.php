@@ -4,7 +4,7 @@ Plugin Name: WordPress Team Manager
 Plugin URI: http://www.dynamicweblab.com/
 Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
 Author: Dynamic Web Lab
-Version: 1.5.8
+Version: 1.5.9
 Author URI:http://www.dynamicweblab.com/
 License: GPL2
 */
@@ -31,20 +31,27 @@ if (!defined('WTM_VERSION_KEY'))
     define('WTM_VERSION_KEY', 'wtm_version');
 
 if (!defined('WTM_VERSION_NUM'))
-    define('WTM_VERSION_NUM', '1.5.8');
+    define('WTM_VERSION_NUM', '1.5.9');
 
-add_option(WTM_VERSION_KEY, WTM_VERSION_NUM);
+$new_version='1.5.9';
 
-function wtm_activate() {
-$get_wtm_version = get_option( 'wtm_version' );
-$tm_custom_template = get_option( 'tm_custom_template' );
+if (get_option(WTM_VERSION_KEY) != $new_version) {
+    // Execute your upgrade logic here
+  function wtm_activate() {
+  $get_wtm_version = get_option( 'wtm_version' );
+  $tm_custom_template = get_option( 'tm_custom_template' );
 
-if($get_wtm_version=='1.5.7' AND !empty($tm_custom_template)){
-  delete_option( 'tm_custom_template' );
+  if($get_wtm_version!='1.5.9' AND !empty($tm_custom_template)){
+    delete_option( 'tm_custom_template' );
+  }
+
+  }
+  register_activation_hook( __FILE__, 'wtm_activate' );
+
+    // Then update the version value
+    update_option(WTM_VERSION_KEY, $new_version);
 }
 
-}
-register_activation_hook( __FILE__, 'wtm_activate' );
 
 define( 'PLUGIN_DIR', dirname(__FILE__).'/' );
 
