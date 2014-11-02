@@ -4,7 +4,7 @@ Plugin Name: WordPress Team Manager
 Plugin URI: http://www.dynamicweblab.com/
 Description: This plugin allows you to manage the members of your team or staff and display them using shortcode.
 Author: Dynamic Web Lab
-Version: 1.5.9
+Version: 1.6.0
 Author URI:http://www.dynamicweblab.com/
 License: GPL2
 */
@@ -31,9 +31,9 @@ if (!defined('WTM_VERSION_KEY'))
     define('WTM_VERSION_KEY', 'wtm_version');
 
 if (!defined('WTM_VERSION_NUM'))
-    define('WTM_VERSION_NUM', '1.5.9');
+    define('WTM_VERSION_NUM', '1.6.0');
 
-$new_version='1.5.9';
+$new_version='1.6.0';
 
 if (get_option(WTM_VERSION_KEY) != $new_version) {
     // Execute your upgrade logic here
@@ -124,5 +124,32 @@ function wptm_columns_content($column_name, $post_ID) {
 
 add_filter('manage_team_manager_posts_columns', 'wptm_columns_head');
 add_action('manage_team_manager_posts_custom_column', 'wptm_columns_content', 10, 2);
+
+// SHOW THE ID
+function team_manager_posts_columns_id($defaults){
+    $defaults['wps_post_id'] = __('ID');
+    return $defaults;
+}
+function team_manager_posts_custom_id_columns($column_name, $id){
+  if($column_name === 'wps_post_id'){
+          echo $id;
+    }
+}
+
+
+add_filter('manage_team_manager_posts_columns', 'team_manager_posts_columns_id', 5);
+add_action('manage_team_manager_posts_custom_column', 'team_manager_posts_custom_id_columns', 5, 2);
+
+
+function team_manager_admin_css() {
+    global $post_type;
+    $post_types = array(
+                        'team_manager'
+                  );
+    if(in_array($post_type, $post_types))
+    echo '<style type="text/css">#post-preview, #view-post-btn{display: none;}</style>';
+}
+add_action( 'admin_head-post-new.php', 'team_manager_admin_css' );
+add_action( 'admin_head-post.php', 'team_manager_admin_css' );
 
 ?>

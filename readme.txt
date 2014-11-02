@@ -44,6 +44,11 @@ For help contact me on [Dynamicweblab.com](http://www.dynamicweblab.com/)
 
 You can create shortcode generator under Team menu or use this default short code 
 [team_manager category='0' orderby='menu_order' limit='0' exclude='' layout='grid' image_layout='rounded'] 
+
+= Where i can see the team manger id ? =
+
+You can see the id on the id column on the team memebers list.
+
 == Screenshots ==
 
 1. Add new member 
@@ -99,3 +104,7 @@ You can create shortcode generator under Team menu or use this default short cod
 
 = 1.5.9 =
 * Fix <br> tag bug
+
+= 1.6.0 =
+* Fix open in new window bug for website link
+* Added ID column on the team manager tab

@@ -12,7 +12,7 @@ function register_team_manager() {
         'add_new_item' => _x( 'Add New ', 'wp-team-manager' ),
         'edit_item' => _x( 'Edit Team Member ', 'wp-team-manager' ),
         'new_item' => _x( 'New Team Member', 'wp-team-manager' ),
-        'view_item' => _x( 'View Team Members', 'wp-team-manager' ),
+        'view_item' => _x( 'View Team Member', 'wp-team-manager' ),
         'search_items' => _x( 'Search Team Members', 'wp-team-manager' ),
         'not_found' => _x( 'Not found any Team Member', 'wp-team-manager' ),
         'not_found_in_trash' => _x( 'No Team Member found in Trash', 'wp-team-manager' ),

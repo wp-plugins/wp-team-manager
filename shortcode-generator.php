@@ -279,7 +279,7 @@ function team_manager_submenu_page_callback() {
           $otherinfo .= '<li><strong>Location: </strong>'.$location.'</li>';
         }
         if (!empty($web_url)) {
-          $otherinfo .= '<li><strong>Web URL: </strong><a href="'.$web_url.'" >Link</a></li>';
+          $otherinfo .= '<li><strong>Web URL: </strong><a href="'.$web_url.'" target="_blank">Link</a></li>';
         }
         if (!empty($vcard)) {
           $otherinfo .= '<li><strong>Vcard: </strong><a href="'.$vcard.'" >Download</a></li>';
