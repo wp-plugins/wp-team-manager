@@ -49,6 +49,10 @@ You can create shortcode generator under Team menu or use this default short cod
 
 You can see the id on the id column on the team memebers list.
 
+= How can i change the image size of the team member? =
+
+Team manager list all the image size on the wordpress.To change default image sizes you can do them on the Settings>media
+
 == Screenshots ==
 
 1. Add new member 
