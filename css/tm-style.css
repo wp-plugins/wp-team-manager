@@ -54,6 +54,7 @@ max-width: 100%;
 padding: 4px;
 background-color: #fff;
 }
+.team-member-other-info span{font-weight: bold;}
 h2.team-title,h4.team-position {
 margin: 0px;
 }
@@ -173,3 +174,10 @@ padding-left: 20px;
 	box-shadow: 0 1px 1px #000000;
 	background-color:#fff; 
 }
+
+.single-team_manager ul.team-member-socials {
+margin: 5px 0 0 0;
+padding: 0px;
+text-align: left;
+}
+.single-team_manager .attachment-post-thumbnail{margin: 1% 10% 1% 10%;}

@@ -90,7 +90,7 @@ function team_manager_submenu_page_callback() {
                 </select>
               </p>                          
             </div>
-            <div id="shortcode_output_box">[team_manager category='0' orderby='menu_order' limit='0' post__in='' exclude='' layout='grid' image_layout='rounded' ]</div>
+            <div id="shortcode_output_box">[team_manager category='0' orderby='menu_order' limit='0' post__in='' exclude='' layout='grid' image_layout='rounded' image_size='thumbnail']</div>
         </form> 
     </div>
 
@@ -105,7 +105,9 @@ function team_manager_submenu_page_callback() {
     $social_size = get_option('tm_social_size');
     // get link new window settings
     $tm_link_new_window = get_option('tm_link_new_window');
-
+    // get link new window settings
+    $single_team_member_view = get_option('single_team_member_view');    
+    // get custom template
     $tm_custom_template = get_option('tm_custom_template');
 
     //If there is no tm_social_size then load default
@@ -144,10 +146,13 @@ function team_manager_submenu_page_callback() {
 	
 
     extract( shortcode_atts( array(
+
       'team_groups' => '',
       'orderby' => 'menu_order',
       'layout' => 'grid',
-      'image_layout' => 'rounded'
+      'image_layout' => 'rounded',
+      'image_size' => 'thumbnail'
+
     ), $atts ) );
 
     $asc_desc = 'DESC';
@@ -162,9 +167,9 @@ function team_manager_submenu_page_callback() {
     $posts_per_page = $atts['limit'];
     } 
 
-    $layout = $atts['layout'];
-    $image_layout = $atts['image_layout']; 
-    $image_size = $atts['image_size'];   
+    $layout = isset($atts['layout']) ? $atts['layout'] : '';
+    $image_layout = isset($atts['image_layout']) ? $atts['image_layout'] : ''; 
+    $image_size = isset($atts['image_size']) ? $atts['image_size'] : '';   
 
     $args = array( 
              'post_type' => 'team_manager',
@@ -208,24 +213,41 @@ function team_manager_submenu_page_callback() {
         $tm_loop->the_post();
 
         $post_id = get_the_ID();
-
-        $title = the_title_attribute( 'echo=0' );
-        $content = get_the_content();
+        $title = get_the_title();
         $content = get_the_content();
         $content = apply_filters('the_content', $content);
         $content = str_replace(']]>', ']]&gt;', $content);        
 
         if (is_array($_wp_additional_image_sizes) && array_key_exists($image_size, $_wp_additional_image_sizes)){
+          
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size );   
+        
         }else{
+          
           $image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'thumbnail' );   
+        
         }          
+        
         $width = $image[1];
 
+        $details_start = '<a href="'.get_permalink().'">';
+        $details_end = '</a>';
+
+        if (!empty($single_team_member_view)) {
+
+          $details_start=$details_end='';
+
+        }
+
+
         if (isset($image[0])) {
-          $image = "<img class='team-picture ".$image_layout."' src='".$image[0]."' width='".$width."' title='".$title."' />";
+          
+          $image = "$details_start<img class='team-picture ".$image_layout."' src='".$image[0]."' width='".$width."' title='".$title."' />$details_end";
+        
         }else{
-          $image = "<img class='team-picture ".$image_layout."' src='".plugins_url( 'img/demo.gif',__FILE__)."' width='150' title='".$title."' />";
+          
+          $image = "$details_start<img class='team-picture ".$image_layout."' src='".plugins_url( 'img/demo.gif',__FILE__)."' width='150' title='".$title."' />$details_end";
+        
         }
 
         $job_title = get_post_meta($post_id,'tm_jtitle',true);
@@ -273,25 +295,27 @@ function team_manager_submenu_page_callback() {
 
         $otherinfo = '<ul class="team-member-other-info">';
         if (!empty($telephone)) {
-          $otherinfo .= '<li><strong>Tel: </strong>'.$telephone.'</li>';
+          $otherinfo .= '<li><span> '.__('Tel:','wp-team-manager').' </span><a href="tel://'.$telephone.'">'.$telephone.'</a></li>';
         }
         if (!empty($location)) {
-          $otherinfo .= '<li><strong>Location: </strong>'.$location.'</li>';
+          $otherinfo .= '<li><span> '.__('Location:','wp-team-manager').' </span>'.$location.'</li>';
         }
         if (!empty($web_url)) {
-          $otherinfo .= '<li><strong>Web URL: </strong><a href="'.$web_url.'" target="_blank">Link</a></li>';
+          $otherinfo .= '<li><span> '.__('Website:','wp-team-manager').' </span><a href="'.$web_url.'" target="_blank">Link</a></li>';
         }
         if (!empty($vcard)) {
-          $otherinfo .= '<li><strong>Vcard: </strong><a href="'.$vcard.'" >Download</a></li>';
+          $otherinfo .= '<li><span> '.__('Vcard:','wp-team-manager').' </span><a href="'.$vcard.'" >Download</a></li>';
         }                                               
         $otherinfo .= '</ul>';
 
 
+
+
         $find = array('/%layout%/i','/%title%/i', '/%content%/i', '/%image%/i','/%jobtitle%/i','/%otherinfo%/i','/%sociallinks%/i');
+        
         $replace = array($layout,$title, $content,$image,$job_title,$otherinfo,$sociallinks);
         
         $output .= preg_replace($find, $replace, $tm_custom_template);
-
 
       }
         $output .= '</div>';
@@ -305,8 +329,4 @@ function team_manager_submenu_page_callback() {
     return $output;
   }
   add_shortcode( 'team_manager', 'team_manager_fn' );
-
-
-
-
-     ?>
+?>

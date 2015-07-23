@@ -3,8 +3,8 @@ Contributors: maidulcu
 Donate link: http://www.dynamicweblab.com/
 Tags: team manager, team management,teams,shortcode,member,vcard
 Requires at least: 3.5
-Tested up to: 4.0
-Stable tag: 4.3
+Tested up to: 4.2.3
+Stable tag: 4.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,7 @@ This plugin will display team or staff members using short code on your post or 
 Features:
 
 * List and Grid view to display team members.
+* Display member details page.
 * Different Image Shapes.
 * Different Image Size.
 * Limit number of team member to display.
@@ -43,7 +44,11 @@ For help contact me on [Dynamicweblab.com](http://www.dynamicweblab.com/)
 = Where is the short code ? =
 
 You can create shortcode generator under Team menu or use this default short code 
-[team_manager category='0' orderby='menu_order' limit='0' exclude='' layout='grid' image_layout='rounded'] 
+[team_manager category='0' orderby='menu_order' limit='0' post__in='' exclude='' layout='grid' image_layout='rounded' image_size='thumbnail'] 
+
+= How can i disable the details member link on the image ? =
+
+You can disable it on the team manager settings page.
 
 = Where i can see the team member id ? =
 
@@ -52,6 +57,10 @@ You can see the id on the id column on the team memebers list.
 = How can i change the image size of the team member? =
 
 Team manager list all the image size on the wordpress.To change default image sizes you can do them on the Settings>media
+
+= How can i edit the details team member page file? =
+
+Copy single.php from wp-team-manager/templates to your-theme-folder/team_template folder and do your changes there.
 
 == Screenshots ==
 
@@ -112,3 +121,10 @@ Team manager list all the image size on the wordpress.To change default image si
 = 1.6.0 =
 * Fix open in new window bug for website link
 * Added ID column on the team manager tab
+
+= 1.6.1 =
+* Enable team member search
+* Add team member details page
+* Disable single team member view settings option
+* Add language support
+* Add telephone hyperlink

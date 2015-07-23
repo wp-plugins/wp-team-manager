@@ -14,7 +14,7 @@ function team_manager_add_css() {
 add_action( 'wp_head', 'team_manager_add_css' ); 
 
 /**
- * Add cuatom css on theme header
+ * Add custom css on theme header
  *
  * @since 1.0
  */
@@ -41,18 +41,27 @@ function tm_create_menu() {
 	add_submenu_page( 'edit.php?post_type=team_manager', 'Settings', 'Settings', 'manage_options', 'team_manager', 'team_manager_setting_function' );
 
 	//call register settings function
-	add_action( 'admin_init', 'register_mysettings' );
+	add_action( 'admin_init', 'register_tm_settings' );
 
 }
-
-function register_mysettings() {
+/**
+ * Register settings menu
+ *
+ * @since 1.0
+ */
+function register_tm_settings() {
 	//register team manager settings
 	register_setting( 'tm-settings-group', 'tm_social_size' );
 	register_setting( 'tm-settings-group', 'tm_link_new_window' );
+    register_setting( 'tm-settings-group', 'single_team_member_view' );
 	register_setting( 'tm-settings-group', 'tm_custom_css' );
     register_setting( 'tm-settings-group', 'tm_custom_template' );
 }
-
+/**
+ * Register settings function
+ *
+ * @since 1.0
+ */
 function team_manager_setting_function() {
 ?>
 <div class="wrap">
@@ -67,6 +76,7 @@ function team_manager_setting_function() {
     $tm_social_size = get_option('tm_social_size');
     $tm_custom_css = get_option('tm_custom_css');
     $tm_link_new_window = get_option('tm_link_new_window');
+    $single_team_member_view = get_option('single_team_member_view');
     $tm_custom_template = get_option('tm_custom_template');
     if (empty($tm_custom_template)) {
     $tm_custom_template='
@@ -85,7 +95,7 @@ function team_manager_setting_function() {
      ?>
     <table class="form-table">
         <tr valign="top">
-        <th scope="row"><label>Social icon size</label></th>
+        <th scope="row"><label><?php _e('Social icon size','wp-team-manager'); ?></label></th>
         <td>
 			<select name="tm_social_size" id="tm_social_size">
 				<option <?php if($tm_social_size==16){ echo 'selected';} ?> value="16">16 px</option>
@@ -94,12 +104,20 @@ function team_manager_setting_function() {
         </td>
         </tr>
         <tr valign="top">
-        <th scope="row"><label>Open links on new window</label></th>
+        <th scope="row"><label><?php _e('Open social links on new window','wp-team-manager'); ?></label></th>
         <td>
 				<input type="checkbox" name="tm_link_new_window" value="True" <?php if($tm_link_new_window=='True'){ echo 'checked';} ?>> Yes
         </td>
         </tr>               
          
+        <tr valign="top">
+        <th scope="row"><label><?php _e('Disable single team member view','wp-team-manager'); ?></label></th>
+        <td>
+                <input type="checkbox" name="single_team_member_view" value="True" <?php if($single_team_member_view=='True'){ echo 'checked';} ?>> Yes
+        </td>
+        </tr> 
+
+
     </table>
 
     <!-- Template -->

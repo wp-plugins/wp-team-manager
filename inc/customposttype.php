@@ -29,14 +29,14 @@ function register_team_manager() {
         'show_in_menu' => true,       
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
-        'exclude_from_search' => true,
+        'exclude_from_search' => false,
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
         'rewrite' => true,
         'capability_type' => 'post',
 		'menu_icon' => plugins_url( '../img/icon16.png',__FILE__),
-		'rewrite' => array( 'slug' => 'team-manager' )
+		'rewrite' => array( 'slug' => 'team-details' )
 
     );
 
@@ -95,7 +95,7 @@ $meta_boxes = array();
 
 $meta_boxes[] = array(
     'id' => 'team_personal',                         // meta box id, unique per meta box
-    'title' => 'Team Member Information',          // meta box title
+    'title' => __('Team Member Information','wp-team-manager'),          // meta box title
     'pages' => array('team_manager'),  // post types, accept custom post types as well, default is array('post'); optional
     'context' => 'normal',                      // where the meta box appear: normal (default), advanced, side; optional
     'priority' => 'high',                       // order of meta box: high (default), low; optional
@@ -107,7 +107,7 @@ $meta_boxes[] = array(
             'desc' => __('Job title of this team member.','wp-team-manager'), // field description, optional
             'id' => $prefix . 'jtitle',              // field id, i.e. the meta key
             'type' => 'text',                       // text box
-            'std' => __('')                    // default value, optional
+            'std' => ''                    // default value, optional
         ),
         array(
             'name' => __('Telephone','wp-team-manager'),                  // field name
@@ -131,8 +131,8 @@ $meta_boxes[] = array(
             'std' => ''                    // default value, optional
         ),                
         array(
-            'name' => __('VCARD','wp-team-manager'),
-            'desc' => __('Upload your VCARD','wp-team-manager'),
+            'name' => __('VCARD', 'wp-team-manager'),
+            'desc' => __('Upload your VCARD', 'wp-team-manager'),
             'id' => $prefix . 'vcard',
             'type' => 'file'                        // file upload
         )
